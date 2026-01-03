@@ -3,12 +3,12 @@ import ServiceCard from './ServiceCard';
 import './Services.scss';
 
 const servicesData = [
+  { icon: '🎯', title: 'PPC Advertising', text: 'Maximize ROI with targeted campaigns.' },
   { icon: '🔍', title: 'SEO Optimization', text: 'Boost rankings and organic traffic.' },
   { icon: '💬', title: 'Social Media', text: 'Engage your audience and build a strong brand.' },
-  { icon: '🎯', title: 'PPC Advertising', text: 'Maximize ROI with targeted campaigns.' },
   { icon: '🎨', title: 'Content Creation', text: 'Compelling content that drives engagement.' },
-  { icon: '📊', title: 'Analytics', text: 'Data‑driven insights to optimize performance.' },
   { icon: '📈', title: 'Growth Strategy', text: 'Strategies designed to scale exponentially.' },
+  { icon: '📊', title: 'Analytics', text: 'Data‑driven insights to optimize performance.' },
 ];
 
 const Services = () => {
