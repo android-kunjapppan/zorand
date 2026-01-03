@@ -1,0 +1,54 @@
+footer {
+  background: #000;
+  color: #aaa;
+  padding: 60px 24px 30px;
+  
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 40px;
+  }
+  
+  h3, h4 { color: #fff; margin-bottom: 8px; }
+  
+  ul {
+    display: flex; flex-direction: column; gap: 8px; margin-top: 8px;
+    a {
+      transition: color .25s ease;
+      &:hover { color: var(--orange); }
+    }
+  }
+  
+  small { display: block; text-align: center; margin-top: 40px; color: #666; }
+}
+
+
+@media (max-width: 480px) {
+  footer {
+    padding: 40px 16px 20px; /* Reduce padding for smaller screens */
+
+    .footer-inner {
+      grid-template-columns: 1fr; /* Stack columns vertically */
+      gap: 24px; /* Reduce gap between sections */
+      text-align: center; /* Center-align content for better look */
+    }
+
+    h3, h4 {
+      font-size: 1rem; /* Slightly smaller headings */
+    }
+
+    ul {
+      align-items: center; /* Center links */
+      gap: 6px;
+
+      a {
+        font-size: 0.9rem; /* Reduce link font size */
+      }
+    }
+
+    small {
+      margin-top: 24px; /* Reduce margin above copyright */
+      font-size: 0.8rem; /* Smaller text for compact look */
+    }
+   }
+}

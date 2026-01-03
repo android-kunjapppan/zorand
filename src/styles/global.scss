@@ -1,0 +1,73 @@
+@import './variables';
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.btn {
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(255,138,0,0.3);
+  transition: transform .3s ease, box-shadow .3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(255,138,0,0.45);
+  }
+}
+
+.section-padding { padding: 120px 24px; }
+.max-width { max-width: 1200px; margin: auto; }
+
+/* Fade In Utility */
+.fade-in-section {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  &.in-view { opacity: 1; }
+}
+
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px; /* Slightly smaller base font for narrow screens */
+    line-height: 1.5;
+  }
+
+  .section-padding {
+    padding: 60px 16px; /* Reduce padding for smaller screens */
+  }
+
+  .btn {
+    width: 100%; /* Full-width buttons for easy tapping */
+    text-align: center;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+  }
+
+  .max-width {
+    padding: 0 12px; /* Add horizontal breathing room */
+  }
+
+  h1, h2, h3 {
+    line-height: 1.2; /* Tighten heading spacing */
+  }
+
+  .fade-in-section {
+    transition: opacity 0.6s ease; /* Slightly faster fade for mobile */
+  }
+}

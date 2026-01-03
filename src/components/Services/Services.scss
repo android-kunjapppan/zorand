@@ -1,0 +1,213 @@
+.services {
+  background: #0b0b0f;
+  color: #fff;
+  background-image:
+    radial-gradient(60rem 60rem at 70% 80%, rgba(110,0,40,0.35), transparent 55%),
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: auto, 40px 40px, 40px 40px;
+  background-position: center;
+  text-align: center;
+
+  h2 { font-size: clamp(36px, 4vw, 52px); margin-bottom: 16px; span { color: var(--orange); } }
+  p.subtitle { max-width: 620px; margin: auto; color: #aaa; margin-bottom: 80px; }
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.cta-text { margin-top: 60px; color: #aaa; font-size: 18px; }
+.cta-btn { margin-top: 24px; }
+
+/* --- Complex Card CSS --- */
+.service-card {
+  --ty: 0px;
+  --rot: 0deg;
+  --sc: 1;
+
+  position: relative;
+  background: linear-gradient(180deg, #171717, #0f0f0f);
+  color: #fff;
+  padding: 36px 30px;
+  border-radius: var(--radius);
+  text-align: left;
+  overflow: hidden;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.40), inset 0 -14px 28px rgba(0,0,0,0.35);
+  border: 1.2px solid rgba(255,138,0,0.12);
+  transform-origin: center;
+  transform: translateY(var(--ty)) rotate(var(--rot)) scale(var(--sc));
+  will-change: transform, box-shadow, filter;
+  transition: transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 420ms ease, filter 420ms ease, border-color 420ms ease;
+
+  /* Odd/Even Idle Tilt */
+  &.odd { --rot: -3deg; }
+  &.even { --rot: 3deg; }
+
+  &.hovering {
+    --rot: 0deg;
+    --ty: -18px;
+    --sc: 1.08;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.55), 0 24px 50px rgba(255,138,0,0.20);
+    filter: brightness(1.06);
+    border-color: rgba(255,138,0,0.45);
+  }
+
+  &::before, &::after {
+    content: ""; position: absolute; pointer-events: none;
+    transition: opacity 420ms ease, transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  &::before { top: -20%; left: -15%; width: 60%; height: 60%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,138,0,0.16), transparent 70%); opacity: .85; }
+  &::after { bottom: -18%; right: -12%; width: 55%; height: 55%; border-radius: 50%; background: radial-gradient(closest-side, rgba(130,0,255,0.12), transparent 70%); opacity: .75; }
+  
+  &.hovering::before { opacity: 1; transform: translate(6px, 6px) scale(1.06); }
+  &.hovering::after { opacity: 1; transform: translate(-6px, -6px) scale(1.06); }
+}
+
+.icon {
+  width: 54px; height: 54px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  display: grid; place-items: center; font-weight: 800; margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(255,138,0,0.35);
+}
+
+/* Animations */
+@keyframes arcToStraightOdd {
+  0%   { transform: translateY(var(--ty)) rotate(-3deg)  scale(var(--sc)) translateX(0)   translateY(0); }
+  50%  { transform: translateY(calc(var(--ty) - 6px)) rotate(-1.2deg) scale(var(--sc)) translateX(-6px) translateY(-2px); }
+  100% { transform: translateY(var(--ty)) rotate(0deg)   scale(var(--sc)) translateX(0)   translateY(0); }
+}
+@keyframes arcToStraightEven {
+  0%   { transform: translateY(var(--ty)) rotate(3deg)   scale(var(--sc)) translateX(0)   translateY(0); }
+  50%  { transform: translateY(calc(var(--ty) - 6px)) rotate(1.2deg)  scale(var(--sc)) translateX(6px)  translateY(-2px); }
+  100% { transform: translateY(var(--ty)) rotate(0deg)   scale(var(--sc)) translateX(0)   translateY(0); }
+}
+@keyframes arcToIdleOdd {
+  0%   { transform: translateY(var(--ty)) rotate(0deg)   scale(var(--sc)) translateX(0)   translateY(0); }
+  50%  { transform: translateY(calc(var(--ty) - 6px)) rotate(-1.2deg) scale(var(--sc)) translateX(-6px) translateY(-2px); }
+  100% { transform: translateY(0)         rotate(-3deg)  scale(1)        translateX(0)   translateY(0); }
+}
+@keyframes arcToIdleEven {
+  0%   { transform: translateY(var(--ty)) rotate(0deg)   scale(var(--sc)) translateX(0)   translateY(0); }
+  50%  { transform: translateY(calc(var(--ty) - 6px)) rotate(1.2deg)  scale(var(--sc)) translateX(6px)  translateY(-2px); }
+  100% { transform: translateY(0)         rotate(3deg)   scale(1)        translateX(0)   translateY(0); }
+}
+
+.service-card.arc-in-odd  { animation: arcToStraightOdd  480ms ease-in-out both; }
+.service-card.arc-in-even { animation: arcToStraightEven 480ms ease-in-out both; }
+.service-card.arc-out-odd  { animation: arcToIdleOdd  480ms ease-in-out both; }
+.service-card.arc-out-even { animation: arcToIdleEven 480ms ease-in-out both; }
+
+@media(max-width: 900px) {
+  .service-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Small mobile optimizations */
+@media (max-width: 480px) {
+  .services {
+    text-align: center;
+    padding: 60px 16px; /* Add breathing room on small screens */
+    background-image:
+      radial-gradient(50rem 50rem at 60% 80%, rgba(110,0,40,0.28), transparent 60%),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: auto, 28px 28px, 28px 28px; /* Finer grid for small displays */
+
+    h2 {
+      font-size: clamp(28px, 6vw, 36px);
+      margin-bottom: 12px;
+
+      span { color: var(--orange); }
+    }
+
+    p.subtitle {
+      max-width: 100%;
+      padding: 0 8px;
+      font-size: 0.95rem;
+      margin-bottom: 40px; /* Shorter spacing */
+      color: #bbb;
+    }
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr; /* Single column stack */
+    gap: 20px;
+    max-width: 560px;   /* Keep readable width on small phones */
+    padding: 0 4px;     /* Prevent edge hugging */
+    perspective: 800px; /* Slightly reduce perspective for subtler depth */
+  }
+
+  .service-card {
+    padding: 22px 18px;       /* Compact padding */
+    border-radius: 14px;      /* Slightly smaller curvature */
+    box-shadow: 0 12px 28px rgba(0,0,0,0.32), inset 0 -10px 20px rgba(0,0,0,0.28);
+    border: 1px solid rgba(255,138,0,0.10);
+    transform: translateY(var(--ty)) rotate(var(--rot)) scale(var(--sc));
+    transition:
+      transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 320ms ease,
+      filter 320ms ease,
+      border-color 320ms ease;
+
+    /* Keep your odd/even tilt but make it gentler on small screens */
+    &.odd { --rot: -2deg; }
+    &.even { --rot: 2deg; }
+
+    &.hovering {
+      --rot: 0deg;
+      --ty: -12px;
+      --sc: 1.04;
+      box-shadow: 0 36px 72px rgba(0,0,0,0.48), 0 18px 36px rgba(255,138,0,0.18);
+      filter: brightness(1.04);
+      border-color: rgba(255,138,0,0.35);
+    }
+
+    &::before { opacity: .75; }
+    &::after  { opacity: .65; }
+  }
+
+  .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 18px rgba(255,138,0,0.28);
+  }
+
+  .cta-text {
+    margin-top: 40px;
+    color: #bbb;
+    font-size: 0.95rem;
+    padding: 0 8px;
+  }
+
+  .cta-btn {
+    margin-top: 16px;
+    width: 100%;            /* Easier tapping */
+    max-width: 360px;
+  }
+
+  .service-card.arc-in-odd,
+  .service-card.arc-in-even,
+  .service-card.arc-out-odd,
+  .service-card.arc-out-even {
+    animation-duration: 420ms; /* Slightly faster on small screens */
+  }
+}
+
+/* Disable hover-only effects on touch devices to avoid sticky states */
+@media (hover: none) and (pointer: coarse) {
+  .service-card.hovering {
+    /* On touch, rely on tap-triggered classes via JS if needed.
+       Keep visual changes subtle to avoid motion overload. */
+    --rot: 0deg;
+    --ty: -8px;
+       --sc: 1.02;
+  }
+}
