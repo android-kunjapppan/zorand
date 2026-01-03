@@ -15,9 +15,9 @@ const Hero = () => {
           </div>
 
           <div className="stats">
-            <div className="stat"><h3>500+</h3><p>Projects</p></div>
+            <div className="stat"><h3>50+</h3><p>Projects</p></div>
             <div className="stat"><h3>98%</h3><p>Success</p></div>
-            <div className="stat"><h3>50M+</h3><p>Reach</p></div>
+            <div className="stat"><h3>20M</h3><p>Reach</p></div>
           </div>
         </div>
 
