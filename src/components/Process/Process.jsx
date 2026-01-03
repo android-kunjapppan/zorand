@@ -21,10 +21,12 @@ const Process = () => {
           <p style={{ color: 'var(--text-muted)' }}>A proven methodology that delivers extraordinary results every time.</p>
         </div>
         <div>
-          <Step title="Step 1 – Discovery" desc="Understanding your brand and goals." />
-          <Step title="Step 2 – Launch" desc="Executing with precision." />
-          <Step title="Step 3 – Optimize" desc="Continuous improvements." />
-          <Step title="Step 4 – Scale" desc="Expand what works." />
+          <Step title="Step 1 – Discover & Diagnose" desc="Understand your market, audience, and current performance." />
+          <Step title="Step 2 – Tracking & Analytics Foundation" desc="Set up Google analytics, pixels, and conversion tracking for clear attribution." />
+          <Step title="Step 3 – Strategy & Growth Blueprint" desc="Define KPIs, channel strategy, budget, and testing plan." />
+          <Step title="Step 4 – Build & Launch" desc="Execute PPC, SEO, and social with a scalable structure." />
+          <Step title="Step 5 – Content & Creative Engine" desc="Produce high-converting creatives, copy, and posts." />
+          <Step title="Step 6 – Optimize & Scale" desc="Weekly improvements, reporting, and scaling what works." />
         </div>
       </div>
     </section>
